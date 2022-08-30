@@ -1,19 +1,30 @@
-package hw1;
+package hw1.gen;
 
 public class Person {
     private String fullName;
 
-    public Person(String fullName) {
+    private Gender gender;
+
+    public Person(String fullName, Gender gender) {
         this.fullName = fullName;
+        this.gender = gender;
     }
 
     public String getFullName() {
         return fullName;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public boolean isMale() {
+        return gender == Gender.MALE;
+    }
+
     @Override
     public String toString() {
-        return fullName;
+        return String.format("%s;%s", fullName, gender);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package hw1;
+package hw1.gen;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +9,15 @@ public class Research {
     private final GeoTree tree;
 
     public Research(GeoTree geoTree) {
+        if (geoTree == null) {
+            throw new IllegalArgumentException("Пустое (null) дерево");
+        }
         tree = geoTree;
+    }
+
+    public void printGeoTree() {
+        System.out.println("-----Genealogical tree------");
+        System.out.println(tree.getGeoTreeAsString());
     }
 
     // *Находит всех предков ancestors персоны p */

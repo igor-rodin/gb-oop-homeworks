@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class GeoTree {
-    private Map<Person, Node> tree = new HashMap<>();
+    private Map<Person, Node> tree;
+
+    public GeoTree() {
+        tree = new HashMap<>();
+    }
 
     public Map<Person, Node> getTree() {
         return tree;
@@ -35,17 +39,28 @@ public class GeoTree {
     }
 
     public List<Person> getAllPersons() {
-        List<Person> persons = new ArrayList<>();
+        return new ArrayList<>(tree.keySet());
+    }
 
-        for (var person : tree.keySet()) {
-            persons.add(person);
+    public Person getPersonById(int id) {
+        if (id < 0 || id >= tree.size()) {
+            throw new IndexOutOfBoundsException();
         }
-
-        return persons;
+        return getAllPersons().get(id);
     }
 
     private void addNode(Person person) {
         tree.put(person, new Node(person));
     }
 
+    public String getGeoTreeAsString() {
+        StringBuilder sb = new StringBuilder();
+        for (var treeEntry : tree.entrySet()) {
+            for (var relation : treeEntry.getValue().getPersonRelations()) {
+                sb.append(String.format("%s;%s;%s\n", treeEntry.getKey(),
+                        treeEntry.getValue().getRelationship(relation), relation.getPerson()));
+            }
+        }
+        return sb.toString();
+    }
 }
