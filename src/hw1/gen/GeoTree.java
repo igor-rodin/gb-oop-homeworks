@@ -42,13 +42,6 @@ public class GeoTree {
         return new ArrayList<>(tree.keySet());
     }
 
-    public Person getPersonById(int id) {
-        if (id < 0 || id >= tree.size()) {
-            throw new IndexOutOfBoundsException();
-        }
-        return getAllPersons().get(id);
-    }
-
     private void addNode(Person person) {
         tree.put(person, new Node(person));
     }

@@ -20,6 +20,16 @@ public class Research {
         System.out.println(tree.getGeoTreeAsString());
     }
 
+    // *Находит персону p по имени fullName */
+    public Person getPersonByName(String fullName) {
+        for (var person : tree.getAllPersons()) {
+            if (fullName.equalsIgnoreCase(person.getFullName())) {
+                return new Person(fullName, person.getGender());
+            }
+        }
+        return null;
+    }
+
     // *Находит всех предков ancestors персоны p */
     public void ancestorsOfPerson(Person p, List<Person> ancestors) {
         List<Person> parents = parentsOfPerson(p);

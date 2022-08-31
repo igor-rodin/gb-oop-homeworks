@@ -38,8 +38,13 @@ public class Person {
         }
 
         if (obj instanceof Person person) {
-            return person.getFullName() == fullName;
+            return fullName.equals(person.fullName) && person.gender == gender;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * fullName.hashCode() + gender.hashCode();
     }
 }
