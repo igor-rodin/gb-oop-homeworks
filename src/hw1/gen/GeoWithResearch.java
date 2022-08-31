@@ -8,8 +8,8 @@ public class GeoWithResearch {
         StorageGen storageGen = new StorageGen("gen.txt");
         GeoTree gt = storageGen.load();
 
-        System.out.println(gt.getAllPersons());
         Research researchGeo = new Research(gt);
+        System.out.println(researchGeo.getAllPersons());
         researchGeo.printGeoTree();
 
         Person lena = researchGeo.getPersonByName("Лена");

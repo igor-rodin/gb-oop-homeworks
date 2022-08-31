@@ -20,9 +20,14 @@ public class Research {
         System.out.println(tree.getGeoTreeAsString());
     }
 
+    // *Получает список всех людей в нереалогическом дереве */
+    public List<Person> getAllPersons() {
+        return new ArrayList<>(tree.getTree().keySet());
+    }
+
     // *Находит персону p по имени fullName */
     public Person getPersonByName(String fullName) {
-        for (var person : tree.getAllPersons()) {
+        for (var person : getAllPersons()) {
             if (fullName.equalsIgnoreCase(person.getFullName())) {
                 return new Person(fullName, person.getGender());
             }

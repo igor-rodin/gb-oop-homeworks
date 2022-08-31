@@ -1,8 +1,6 @@
 package hw1.gen;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GeoTree {
@@ -36,10 +34,6 @@ public class GeoTree {
         tree.get(parent).addPersonRelation(tree.get(child), Relationship.CHILD);
         tree.get(child).addPersonRelation(tree.get(parent), Relationship.PARENT);
 
-    }
-
-    public List<Person> getAllPersons() {
-        return new ArrayList<>(tree.keySet());
     }
 
     private void addNode(Person person) {
