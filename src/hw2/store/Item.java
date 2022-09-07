@@ -34,4 +34,22 @@ public class Item {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Item)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+
+        Item item = (Item) obj;
+        return nameOfItem == item.getNameOfItem() && category == item.getCategory();
+    }
+
+    @Override
+    public int hashCode() {
+        return nameOfItem.hashCode() + 32 * category.hashCode();
+    }
 }

@@ -11,11 +11,11 @@ public abstract class PetAnimal {
         return petName;
     }
 
-    public void pet(String message) {
-        System.out.printf("%s, %s\n", petName, message);
-    };
+    public abstract void makeVoice();
 
-    public abstract void aport(String item);
+    public void feed(String food) {
+        System.out.printf("%s ест %s\n", petName, food);
+    }
 
     @Override
     public String toString() {

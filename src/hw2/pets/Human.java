@@ -22,13 +22,12 @@ public class Human {
         }
     }
 
-    public void petAnimal(PetAnimal animal, String petMessage) {
-        animal.pet(petMessage);
+    public void callAnimal(PetAnimal animal, String petMessage) {
+        animal.makeVoice();
     }
 
-    public void giveAportCommand(PetAnimal animal, String item) {
-        System.out.printf("%s, принеси %s\n", animal, item);
-        animal.aport(item);
+    public void feedAnimal(PetAnimal animal, String food) {
+        animal.feed(food);
     }
 
     @Override
