@@ -45,7 +45,7 @@ public class Item {
         }
 
         Item item = (Item) obj;
-        return nameOfItem == item.getNameOfItem() && category == item.getCategory();
+        return nameOfItem.equals(item.getNameOfItem()) && category == item.getCategory();
     }
 
     @Override

@@ -3,14 +3,18 @@ package hw2.gen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeoWithResearch {
-    public static void main(String[] args) {
-        StorageGen storageGen = new StorageGen("gen.txt");
-        GeoTree gt = storageGen.load();
+import hw2.gen.georesearch.GeoResearch;
+import hw2.gen.georesearch.Research;
+import hw2.gen.geotree.Genealogical;
 
-        Research researchGeo = new Research(gt);
-        System.out.println(researchGeo.getAllPersons());
-        researchGeo.printGeoTree();
+public class Main {
+    public static void main(String[] args) {
+        Storage storageGen = new GenStorage("gen.txt");
+        Genealogical gt = storageGen.load();
+
+        Research researchGeo = new GeoResearch(gt);
+        System.out.println(researchGeo.allPersons());
+        researchGeo.print();
 
         Person lena = researchGeo.getPersonByName("Лена");
         Person irina = researchGeo.getPersonByName("Ирина");

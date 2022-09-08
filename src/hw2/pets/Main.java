@@ -4,7 +4,7 @@ import hw2.pets.cats.PetCat;
 import hw2.pets.dogs.PetDog;
 import hw2.pets.snakes.PetSnake;
 
-public class Pets {
+public class Main {
     public static void main(String[] args) {
         Human master = new Human("Хозяин");
         master.addPet(new PetCat("Юлий"));

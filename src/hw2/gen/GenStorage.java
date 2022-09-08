@@ -7,18 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class StorageGen {
+import hw2.gen.geotree.Genealogical;
+import hw2.gen.geotree.GeoTree;
+
+public class GenStorage implements Storage {
     private final Path pathFileStorage;
 
-    public StorageGen(String fileStorage) {
+    public GenStorage(String fileStorage) {
         if (fileStorage.isBlank()) {
             throw new IllegalArgumentException("Имя файла не должно быть пустым");
         }
         this.pathFileStorage = Path.of(System.getProperty("user.dir"), fileStorage);
     }
 
-    public void save(GeoTree gTree) {
-        String treeRelations = gTree.getGeoTreeAsString();
+    @Override
+    public void save(Genealogical gTree) {
+        String treeRelations = gTree.asString();
         try {
             BufferedWriter writer = Files.newBufferedWriter(pathFileStorage, Charset.forName("UTF-8"));
             writer.write(treeRelations);
@@ -28,8 +32,9 @@ public class StorageGen {
         }
     }
 
-    public GeoTree load() {
-        GeoTree gTree = new GeoTree();
+    @Override
+    public Genealogical load() {
+        Genealogical gTree = new GeoTree();
         try {
             List<String> allTreeRelations = Files.readAllLines(pathFileStorage, Charset.forName("UTF-8"));
             for (String treeLine : allTreeRelations) {
