@@ -2,9 +2,11 @@ package hw3.gen.georesearch;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import hw3.gen.Gender;
 import hw3.gen.Person;
 import hw3.gen.Printable;
 import hw3.gen.Relationship;
@@ -33,6 +35,38 @@ public interface Research extends Printable {
             ancestorsOfPerson(person, ancestors);
         }
     };
+
+    // *Находит всех наследников descendant персоны p по женской (мужской) линии
+    // gender */
+    default List<Person> descendantsOfPersonByGender(Person p, Gender gender) {
+        List<Person> result = new ArrayList<>();
+        descendantsOfPerson(p, result);
+
+        Iterator<Person> iter = result.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().getGender() != gender) {
+                iter.remove();
+            }
+        }
+
+        return result;
+    }
+
+    // *Находит всех предков ancestors персоны p по женской (мужской) линии
+    // gender */
+    default List<Person> ancestorsOfPersonByGender(Person p, Gender gender) {
+        List<Person> result = new ArrayList<>();
+        ancestorsOfPerson(p, result);
+
+        Iterator<Person> iter = result.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().getGender() != gender) {
+                iter.remove();
+            }
+        }
+
+        return result;
+    }
 
     // *Находит всех наследников descendant персоны p */
     default void descendantsOfPerson(Person p, List<Person> descendant) {

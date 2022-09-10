@@ -22,22 +22,29 @@ public class Main {
         Person vasya = researchGeo.getPersonByName("Вася");
         Person masha = researchGeo.getPersonByName("Маша");
 
-        System.out.printf("Parents of %s -> %s\n", irina.getFullName(),
+        System.out.printf("Родителиf %s -> %s\n", irina.getFullName(),
                 researchGeo.parentsOfPerson(irina));
-        System.out.printf("Parents of %s -> %s\n", jane.getFullName(), researchGeo.parentsOfPerson(jane));
-        System.out.printf("Childs of %s -> %s\n", vasya.getFullName(), researchGeo.childsOfPerson(vasya));
-        System.out.printf("Childs of %s -> %s\n", masha.getFullName(), researchGeo.childsOfPerson(masha));
+        System.out.printf("Родители %s -> %s\n", jane.getFullName(), researchGeo.parentsOfPerson(jane));
+        System.out.printf("Дети %s -> %s\n", vasya.getFullName(), researchGeo.childsOfPerson(vasya));
+        System.out.printf("Дети %s -> %s\n", masha.getFullName(), researchGeo.childsOfPerson(masha));
 
         List<Person> descendants = new ArrayList<>();
         researchGeo.descendantsOfPerson(vasya, descendants);
-        System.out.printf("Descendants of %s -> %s\n", vasya.getFullName(), descendants);
+        System.out.printf("Наследники %s -> %s\n", vasya.getFullName(), descendants);
 
         List<Person> ancestors = new ArrayList<>();
         researchGeo.ancestorsOfPerson(jane, ancestors);
-        System.out.printf("Ancestors of %s -> %s\n", jane.getFullName(), ancestors);
+        System.out.printf("Предки %s -> %s\n", jane.getFullName(), ancestors);
 
-        System.out.printf("Siblings of %s -> %s\n", lena.getFullName(), researchGeo.siblingsOfPerson(lena));
+        System.out.printf("Братья и сёстры %s -> %s\n", lena.getFullName(), researchGeo.siblingsOfPerson(lena));
 
+        List<Person> femaileAncestors = researchGeo.ancestorsOfPersonByGender(jane, Gender.FEMAILE);
+        System.out.printf("Предки по женской линии of %s -> %s\n", jane.getFullName(), femaileAncestors);
+
+        List<Person> maleDescendants = researchGeo.descendantsOfPersonByGender(vasya, Gender.MALE);
+        System.out.printf("Наследники по мужской линии %s -> %s\n", vasya.getFullName(), maleDescendants);
+        System.out.printf("Наследники по женской линии %s -> %s\n", vasya.getFullName(),
+                researchGeo.descendantsOfPersonByGender(vasya, Gender.FEMAILE));
         // storageGen.save(gt);
     }
 }
