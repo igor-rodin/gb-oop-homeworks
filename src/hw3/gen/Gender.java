@@ -1,4 +1,4 @@
-package hw2.gen;
+package hw3.gen;
 
 public enum Gender {
     FEMAILE,

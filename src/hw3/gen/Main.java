@@ -1,11 +1,11 @@
-package hw2.gen;
+package hw3.gen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import hw2.gen.georesearch.GeoResearch;
-import hw2.gen.georesearch.Research;
-import hw2.gen.geotree.Genealogical;
+import hw3.gen.georesearch.GeoResearch;
+import hw3.gen.georesearch.Research;
+import hw3.gen.geotree.Genealogical;
 
 public class Main {
     public static void main(String[] args) {

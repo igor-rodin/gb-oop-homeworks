@@ -1,12 +1,12 @@
-package hw2.gen.geotree;
+package hw3.gen.geotree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hw2.gen.Person;
-import hw2.gen.Relationship;
+import hw3.gen.Person;
+import hw3.gen.Relationship;
 
 public class GeoTree implements Genealogical {
     private Map<Person, Node> tree;

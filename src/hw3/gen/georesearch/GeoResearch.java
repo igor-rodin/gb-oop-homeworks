@@ -1,12 +1,12 @@
-package hw2.gen.georesearch;
+package hw3.gen.georesearch;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import hw2.gen.Person;
-import hw2.gen.Relationship;
-import hw2.gen.geotree.Genealogical;
-import hw2.gen.geotree.Node;
+import hw3.gen.Person;
+import hw3.gen.Relationship;
+import hw3.gen.geotree.Genealogical;
+import hw3.gen.geotree.Node;
 
 public class GeoResearch implements Research {
     private final Genealogical tree;

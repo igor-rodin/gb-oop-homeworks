@@ -1,6 +1,6 @@
-package hw2.gen;
+package hw3.gen;
 
-import hw2.gen.geotree.Genealogical;
+import hw3.gen.geotree.Genealogical;
 
 public interface Storage {
     void save(Genealogical gTree);

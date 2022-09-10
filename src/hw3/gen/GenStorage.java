@@ -1,4 +1,4 @@
-package hw2.gen;
+package hw3.gen;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import hw2.gen.geotree.Genealogical;
-import hw2.gen.geotree.GeoTree;
+import hw3.gen.geotree.Genealogical;
+import hw3.gen.geotree.GeoTree;
 
 public class GenStorage implements Storage {
     private final Path pathFileStorage;

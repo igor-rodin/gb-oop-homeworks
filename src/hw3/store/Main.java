@@ -1,4 +1,4 @@
-package hw2.store;
+package hw3.store;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package hw2.gen.geotree;
+package hw3.gen.geotree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import hw2.gen.Person;
-import hw2.gen.Relationship;
+import hw3.gen.Person;
+import hw3.gen.Relationship;
 
 public class GeoNode implements Node {
     private Person person;

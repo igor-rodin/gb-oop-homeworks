@@ -1,13 +1,13 @@
-package hw2.gen.georesearch;
+package hw3.gen.georesearch;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import hw2.gen.Person;
-import hw2.gen.Printable;
-import hw2.gen.Relationship;
+import hw3.gen.Person;
+import hw3.gen.Printable;
+import hw3.gen.Relationship;
 
 public interface Research extends Printable {
     // *Находит персону p по имени fullName */

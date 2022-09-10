@@ -1,8 +1,8 @@
-package hw2.gen.geotree;
+package hw3.gen.geotree;
 
 import java.util.List;
 
-import hw2.gen.Person;
+import hw3.gen.Person;
 
 public interface Genealogical {
     boolean exist(Person person);

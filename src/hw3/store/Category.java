@@ -1,4 +1,4 @@
-package hw2.store;
+package hw3.store;
 
 public enum Category {
     WATER, FOOD, HYGIENE
