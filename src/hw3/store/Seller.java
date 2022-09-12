@@ -3,6 +3,8 @@ package hw3.store;
 import java.util.Map;
 import java.util.Random;
 
+import hw3.store.item.Item;
+
 public class Seller extends Human implements SellCommunication {
 
     public Seller(String name, double money) {

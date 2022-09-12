@@ -2,6 +2,8 @@ package hw3.store;
 
 import java.util.Map;
 
+import hw3.store.item.Item;
+
 public interface SellCommunication {
     default void sellItem(Item item, int counts, Consumer consumer) {
         sellItems(Map.of(item, counts), consumer);

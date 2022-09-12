@@ -1,7 +1,6 @@
 package hw3.gen.georesearch;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;

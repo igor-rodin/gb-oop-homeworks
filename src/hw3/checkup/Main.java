@@ -2,6 +2,7 @@ package hw3.checkup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,15 @@ public class Main {
         nurse.countOffByAge(students);
         nurse.countOffByName(students);
         // Убираем из очереди здоровых учеников
-        students.removeIf(student -> student.getDeseaseDegree().desease() == Desease.NONE);
+        Iterator<Student> iter = students.iterator();
+        while (iter.hasNext()) {
+            if (iter.next().getDeseaseDegree().desease() == Desease.NONE) {
+                iter.remove();
+            }
+        }
+
+        // students.removeIf(student -> student.getDeseaseDegree().desease() ==
+        // Desease.NONE);
 
         nurse.goToCheckup(nurse.getStudents());
 

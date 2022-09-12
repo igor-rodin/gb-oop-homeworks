@@ -1,22 +1,24 @@
-package hw3.store;
+package hw3.store.item;
 
-public class Item {
-    private String nameOfItem;
+import hw3.store.Category;
+
+public class Item implements Comparable<Item> {
+    private String itemName;
     private double cost;
     private Category category;
 
     public Item(String nameOfItem, double cost, Category category) {
-        this.nameOfItem = nameOfItem;
+        this.itemName = nameOfItem;
         this.cost = cost;
         this.category = category;
     }
 
     public String getNameOfItem() {
-        return nameOfItem;
+        return itemName;
     }
 
     public void setNameOfItem(String nameOfItem) {
-        this.nameOfItem = nameOfItem;
+        this.itemName = nameOfItem;
     }
 
     public double getCost() {
@@ -45,11 +47,19 @@ public class Item {
         }
 
         Item item = (Item) obj;
-        return nameOfItem.equals(item.getNameOfItem()) && category == item.getCategory();
+        return itemName.equals(item.getNameOfItem()) && category == item.getCategory();
     }
 
     @Override
     public int hashCode() {
-        return nameOfItem.hashCode() + 32 * category.hashCode();
+        return itemName.hashCode() + 31 * category.hashCode();
+    }
+
+    @Override
+    public int compareTo(Item o) {
+        if (this == o) {
+            return 0;
+        }
+        return itemName.compareTo(o.getNameOfItem());
     }
 }

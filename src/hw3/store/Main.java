@@ -1,7 +1,17 @@
 package hw3.store;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import hw3.store.item.CategoryComparator;
+import hw3.store.item.CostComparator;
+import hw3.store.item.CountsItemComparator;
+import hw3.store.item.Item;
+import hw3.store.item.SortingOrder;
 
 public class Main {
     final static Map<Item, Integer> storage = new HashMap<>();
@@ -12,35 +22,43 @@ public class Main {
         Seller seller = new Seller("Продавец", 0);
         seller.addItemsFrom(storage);
 
-        System.out.println("Storage:");
-        printItems(storage);
+        System.out.println("Склад (в порядке убывания количества товаров):");
+
+        printSortedItems(storage, new CountsItemComparator(SortingOrder.DESC));
 
         Consumer consumer = new Consumer("Покупатель", 100);
 
         consumer.addToWishList(new Item("Item_1", 12.5, Category.FOOD), 1);
         consumer.addToWishList(new Item("Item_4", 2.5, Category.WATER), 2);
         consumer.addToWishList(new Item("Item_9", 20.5, Category.HYGIENE), 1);
-        System.out.println("Wish List:");
-        printItems(consumer.getWishList());
+        System.out.println("Список желаний (в порядке возрастания стоимости):");
+        printSortedItems(consumer.getWishList(), new CostComparator());
 
         double totalCostStorage = seller.totalCost(seller.getItems());
         System.out.println(totalCostStorage);
-        System.out.printf("Стоимость товаров на складе: %f\n", totalCostStorage);
+        System.out.printf("Стоимость товаров на складе: %5.2f\n", totalCostStorage);
         double totalCostWishes = consumer.totalCost(consumer.getWishList());
-        System.out.printf("Стоимость товаров в списке хотелок покупателя: %f\n", totalCostWishes);
+        System.out.printf("Стоимость товаров в списке хотелок покупателя: %5.2f\n", totalCostWishes);
 
-        System.out.printf("Сумма денег у продавца: %f\n", seller.getMoney());
-        System.out.printf("Сумма денег у покупателя: %f\n", consumer.getMoney());
+        System.out.printf("Сумма денег у продавца: %5.2f\n", seller.getMoney());
+        System.out.printf("Сумма денег у покупателя: %5.2f\n", consumer.getMoney());
 
         seller.sellItems(consumer.getWishList(), consumer);
         printItems(seller.getItems());
-        System.out.printf("Сумма денег у продавца: %f\n", seller.getMoney());
+        System.out.printf("Сумма денег у продавца: %5.2f\n", seller.getMoney());
+        System.out.println("--------Список желаний после продажи----------------");
         printItems(consumer.getWishList());
-        System.out.printf("Сумма денег у покупателя: %f\n", consumer.getMoney());
+        System.out.printf("Сумма денег у покупателя: %5.2f\n", consumer.getMoney());
 
         Item newItem = new Item("Item_34", 12., Category.FOOD);
         consumer.addToWishList(newItem, 2);
-        seller.sellItem(newItem, 2, consumer);
+        consumer.addToWishList(new Item("Item_5", 15, Category.WATER), 10);
+        System.out.println("------До проверки наличия на складе-----");
+        printSortedItems(consumer.getWishList(), new CategoryComparator());
+        seller.sellItems(consumer.getWishList(), consumer);
+        consumer.validateWishList(storage);
+        System.out.println("------Скорректированный список желаний-------");
+        printSortedItems(consumer.getWishList(), new CategoryComparator());
     }
 
     private static void fillStorage() {
@@ -59,7 +77,7 @@ public class Main {
         storage.put(item_3, 4);
 
         storage.put(item_4, 3);
-        storage.put(item_5, 1);
+        storage.put(item_5, 13);
         storage.put(item_6, 2);
 
         storage.put(item_7, 3);
@@ -69,7 +87,19 @@ public class Main {
 
     private static void printItems(Map<Item, Integer> items) {
         for (var item : items.entrySet()) {
-            System.out.printf("%s - %d\n", item.getKey().getNameOfItem(), item.getValue());
+            System.out.printf("%s [%s] - %d (цена - %5.2f)\n", item.getKey().getNameOfItem(),
+                    item.getKey().getCategory(), item.getValue(),
+                    item.getKey().getCost());
+        }
+    }
+
+    private static void printSortedItems(Map<Item, Integer> items, Comparator<Entry<Item, Integer>> comparator) {
+        List<Entry<Item, Integer>> sortedItems = new ArrayList<>(items.entrySet());
+        sortedItems.sort(comparator);
+        for (var item : sortedItems) {
+            System.out.printf("%s [%s] - %d (цена - %5.2f)\n", item.getKey().getNameOfItem(),
+                    item.getKey().getCategory(), item.getValue(),
+                    item.getKey().getCost());
         }
     }
 }

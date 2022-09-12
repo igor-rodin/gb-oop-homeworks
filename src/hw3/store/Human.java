@@ -3,6 +3,8 @@ package hw3.store;
 import java.util.HashMap;
 import java.util.Map;
 
+import hw3.store.item.Item;
+
 public abstract class Human implements Communication {
     protected final static int MAX_LOVE_INDEX = 5;
 
