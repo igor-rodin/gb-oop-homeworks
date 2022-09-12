@@ -47,10 +47,9 @@ public class GeoTree implements Genealogical {
 
     @Override
     public void addNode(Person person) {
-        if (person == null) {
-            return;
+        if (person != null) {
+            tree.put(person, new GeoNode(person));
         }
-        tree.put(person, new GeoNode(person));
     }
 
     @Override

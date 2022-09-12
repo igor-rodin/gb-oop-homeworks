@@ -39,12 +39,13 @@ public class Main {
         System.out.printf("Братья и сёстры %s -> %s\n", lena.getFullName(), researchGeo.siblingsOfPerson(lena));
 
         List<Person> femaileAncestors = researchGeo.ancestorsOfPersonByGender(jane, Gender.FEMAILE);
-        System.out.printf("Предки по женской линии of %s -> %s\n", jane.getFullName(), femaileAncestors);
-
+        System.out.printf("Предки по женской линии %s: ", jane.getFullName());
+        researchGeo.printGenLine(femaileAncestors);
         List<Person> maleDescendants = researchGeo.descendantsOfPersonByGender(vasya, Gender.MALE);
-        System.out.printf("Наследники по мужской линии %s -> %s\n", vasya.getFullName(), maleDescendants);
-        System.out.printf("Наследники по женской линии %s -> %s\n", vasya.getFullName(),
-                researchGeo.descendantsOfPersonByGender(vasya, Gender.FEMAILE));
+        System.out.printf("Наследники по мужской линии %s: ", vasya.getFullName());
+        researchGeo.printGenLine(maleDescendants);
+        System.out.printf("Наследники по женской линии %s: ", vasya.getFullName());
+        researchGeo.printGenLine(researchGeo.descendantsOfPersonByGender(vasya, Gender.FEMAILE));
         // storageGen.save(gt);
     }
 }

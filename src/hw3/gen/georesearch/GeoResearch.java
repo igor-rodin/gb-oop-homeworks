@@ -2,6 +2,7 @@ package hw3.gen.georesearch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import hw3.gen.Person;
 import hw3.gen.Relationship;
@@ -44,25 +45,35 @@ public class GeoResearch implements Research {
     // *Находит отношения re персоны p */
     @Override
     public List<Person> getPersonRelations(Person p, Relationship re) {
-        if (p == null) {
-            return List.of();
+        List<Person> result = new ArrayList<>();
+        if (p != null) {
+            Node personNode = tree.getNode(p);
+            result = personNode.getPersonRelationsWith(re);
         }
-        Node personNode = tree.getNode(p);
-        return personNode.getPersonRelationsWith(re);
+        return result;
     }
 
     // *Находит все отношения персоны p */
     @Override
     public List<Person> getPersonRelations(Person p) {
-        if (p == null) {
-            return List.of();
-        }
-        Node personNode = tree.getNode(p);
         List<Person> result = new ArrayList<>();
+        if (p != null) {
+            Node personNode = tree.getNode(p);
 
-        for (var node : personNode.getPersonRelations()) {
-            result.add(node.getPerson());
+            for (var node : personNode.getPersonRelations()) {
+                result.add(node.getPerson());
+            }
         }
         return result;
+    }
+
+    @Override
+    public void printGenLine(List<Person> persons) {
+        StringJoiner joiner = new StringJoiner(" -> ", "{ ", " }");
+
+        for (Person person : persons) {
+            joiner.add(person.getFullName());
+        }
+        System.out.println(joiner);
     }
 }
