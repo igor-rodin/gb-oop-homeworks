@@ -1,7 +1,7 @@
 package taskmanager.model.task;
 
-public class ImediatePriority extends AbstractPriority {
-    public ImediatePriority() {
+public class ImmediatePriority extends AbstractPriority {
+    public ImmediatePriority() {
         super(PriorityColor.RED, PriorityLevel.IMMEDIATE);
     }
 }

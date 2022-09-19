@@ -2,7 +2,7 @@ package taskmanager.model.task;
 
 import java.util.Comparator;
 
-public class ByCreateDate implements Comparator<Task> {
+public class ByCreateDateComparator implements Comparator<Task> {
 
     @Override
     public int compare(Task o1, Task o2) {
