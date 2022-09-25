@@ -23,12 +23,11 @@ public class TaskBoard {
     }
 
     public boolean remove(Task task) {
-        boolean isRemoved = false;
         if (taskBoard.contains(task)) {
             taskBoard.remove(task);
-            isRemoved = true;
+            return true;
         }
-        return isRemoved;
+        return false;
     }
 
     public Task getTask(int index) {

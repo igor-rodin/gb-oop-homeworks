@@ -9,10 +9,10 @@ public class Task implements Cloneable {
     public static enum Status {
         START,
         IN_WORK,
-        DONE
+        CLOSED
     }
 
-    private static final int DEFAULT_DEADLINE_DAYS = 7;
+    private static final int DEFAULT_DAYS_TO_DEADLINE = 7;
     private final UUID id;
     private String autherFullName;
     private Priority priority;
@@ -40,7 +40,7 @@ public class Task implements Cloneable {
     }
 
     public Task(String autherFullName, String title, String description) {
-        this(autherFullName, title, description, new LowPriority(), LocalDate.now().plusDays(DEFAULT_DEADLINE_DAYS));
+        this(autherFullName, title, description, new LowPriority(), LocalDate.now().plusDays(DEFAULT_DAYS_TO_DEADLINE));
     }
 
     @Override
