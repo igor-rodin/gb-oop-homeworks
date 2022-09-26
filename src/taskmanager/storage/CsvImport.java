@@ -14,7 +14,6 @@ import taskmanager.model.task.LowPriority;
 import taskmanager.model.task.MiddlePriority;
 import taskmanager.model.task.ImmediatePriority;
 import taskmanager.model.task.Priority;
-import taskmanager.model.task.PriorityLevel;
 import taskmanager.model.task.Task;
 import taskmanager.model.task.Task.Status;
 import taskmanager.model.taskboard.TaskBoard;
@@ -50,7 +49,7 @@ public class CsvImport implements Importer {
         String[] taskProps = line.split(delim);
         UUID id = UUID.fromString(taskProps[0]);
 
-        PriorityLevel level = PriorityLevel.valueOf(taskProps[4]);
+        Priority.Level level = Priority.Level.valueOf(taskProps[4]);
         Priority priority = switch (level) {
             case LOW -> new LowPriority();
             case MIDDLE -> new MiddlePriority();

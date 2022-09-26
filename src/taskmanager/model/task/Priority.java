@@ -1,8 +1,14 @@
 package taskmanager.model.task;
 
 public interface Priority {
+    public enum Level {
+        NONE,
+        LOW,
+        MIDDLE,
+        IMMEDIATE
+    }
 
-    PriorityLevel getPriorityLevel();
+    Level getPriorityLevel();
 
     PriorityColor getPriorityColor();
 

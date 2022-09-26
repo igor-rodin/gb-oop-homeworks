@@ -2,15 +2,15 @@ package taskmanager.model.task;
 
 public abstract class AbstractPriority implements Priority {
     private PriorityColor displayColor = PriorityColor.BLACK;
-    private final PriorityLevel priorityLevel;
+    private final Level priorityLevel;
 
-    protected AbstractPriority(PriorityColor displayColor, PriorityLevel priorityLevel) {
+    protected AbstractPriority(PriorityColor displayColor, Level priorityLevel) {
         this.displayColor = displayColor;
         this.priorityLevel = priorityLevel;
     }
 
     public AbstractPriority() {
-        this(PriorityColor.BLACK, PriorityLevel.NONE);
+        this(PriorityColor.BLACK, Level.NONE);
     }
 
     @Override
@@ -24,7 +24,7 @@ public abstract class AbstractPriority implements Priority {
     }
 
     @Override
-    public PriorityLevel getPriorityLevel() {
+    public Level getPriorityLevel() {
         return priorityLevel;
     }
 

@@ -25,7 +25,7 @@ public class CsvExport implements Exporter {
             String lineSep = System.lineSeparator();
             for (var task : taskBoard.items()) {
                 String csvLine = String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s", task.getId(), delim,
-                        task.getAutherFullName(), delim, task.getTitle(), delim, task.getDescription(),
+                        task.getAuthorFullName(), delim, task.getTitle(), delim, task.getDescription(),
                         delim, task.getPriorityLevel(), delim, task.getStatus(), delim, task.getCreateDate(),
                         delim, task.getCreateTime(), delim,
                         task.getDeadline(), lineSep);

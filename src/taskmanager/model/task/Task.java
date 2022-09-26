@@ -14,7 +14,7 @@ public class Task implements Cloneable {
 
     private static final int DEFAULT_DAYS_TO_DEADLINE = 7;
     private final UUID id;
-    private String autherFullName;
+    private String authorFullName;
     private Priority priority;
     private Status status;
     private String title;
@@ -22,10 +22,10 @@ public class Task implements Cloneable {
     private LocalDate deadline;
     private LocalDateTime createDateTime;
 
-    public Task(UUID id, String autherFullName, String title, String description, Priority priority,
+    public Task(UUID id, String authorFullName, String title, String description, Priority priority,
             LocalDate deadline) {
         this.id = id;
-        this.autherFullName = autherFullName;
+        this.authorFullName = authorFullName;
         this.title = title;
         this.description = description;
         this.priority = priority;
@@ -60,7 +60,7 @@ public class Task implements Cloneable {
     public int hashCode() {
         int result = id.hashCode();
         result += result + 31 * createDateTime.hashCode();
-        result += result + 31 * autherFullName.hashCode();
+        result += result + 31 * authorFullName.hashCode();
         result += result + 31 * title.hashCode();
         result += result + 31 * description.hashCode();
         result += result + 31 * priority.hashCode();
@@ -76,7 +76,7 @@ public class Task implements Cloneable {
         this.priority = priority;
     }
 
-    public PriorityLevel getPriorityLevel() {
+    public Priority.Level getPriorityLevel() {
         return priority.getPriorityLevel();
     }
 
@@ -92,8 +92,8 @@ public class Task implements Cloneable {
         status = newStatus;
     }
 
-    public String getAutherFullName() {
-        return autherFullName;
+    public String getAuthorFullName() {
+        return authorFullName;
     }
 
     public void setTitle(String newValue) {
