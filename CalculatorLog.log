@@ -1,0 +1,10 @@
+сент. 28, 2022 2:54:27 AM calculator.App run
+INFO: Калькулятор запущен
+сент. 28, 2022 2:54:34 AM calculator.App run
+INFO: Режим веещественных чисел
+сент. 28, 2022 2:54:41 AM calculator.App calc
+INFO: Выражение: 2 + 4 - Значение: 6.0
+сент. 28, 2022 2:55:10 AM calculator.App calc
+INFO: Выражение: 3 - 6 - Значение: -3.0
+сент. 28, 2022 2:55:47 AM calculator.App calc
+INFO: Завершение работы

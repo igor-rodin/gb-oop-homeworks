@@ -1,7 +1,6 @@
 package calculator;
 
 import calculator.model.Calculator;
-import calculator.model.complex.Complex;
 import calculator.model.complex.ComplexCalculator;
 import calculator.model.exeption.CalculataorExeption;
 import calculator.model.rational.RationalCalculator;
@@ -17,18 +16,21 @@ public class App {
     private final View view = new ConsoleVew();
 
     public void run() {
-
+        CalcLogger.initLogger();
+        CalcLogger.LOGGER.info("Калькулятор запущен");
         CalcMode mode = view.showMenu();
         switch (mode) {
             case RATIONAL -> {
+                CalcLogger.LOGGER.info("Режим веещественных чисел");
                 System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n", "RATIONAL");
                 calc(new RationalCalculator(), new RationalParser());
             }
             case COMPLEX -> {
+                CalcLogger.LOGGER.info("Режим комплексных чисел");
                 System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n\n", "COMPLEX");
                 System.out.println("(Комлексные числа должны быть в формате re + i img, re - вещественая часть,\n" +
                         "img - мнимая. i записывается как i1");
-                System.out.println("И записаны внутри скобок, например, (1.5 + i2) * (i1) )");
+                System.out.println("И записаны внутри скобок, например, (1.5 + i2) * (i1) )dat");
                 calc(new ComplexCalculator(), new ComplexParser());
             }
         }
@@ -38,7 +40,7 @@ public class App {
         while (true) {
             String mathExpr = view.getExpression();
             if (mathExpr.equalsIgnoreCase("q")) {
-                System.out.println("Завершение работы...");
+                CalcLogger.LOGGER.info("Завершение работы");
                 return;
             }
             try {
@@ -51,6 +53,8 @@ public class App {
                 };
 
                 view.showResult(result.toString());
+                String logMessage = String.format("Выражение: %s - Значение: %s\n ", mathExpr, result);
+                CalcLogger.LOGGER.info(logMessage);
             } catch (CalculataorExeption e) {
                 System.out.println(e.getMessage());
             }
