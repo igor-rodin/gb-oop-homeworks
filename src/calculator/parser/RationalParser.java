@@ -1,12 +1,11 @@
 package calculator.parser;
 
+import java.text.ParseException;
 import calculator.model.MathOperations;
-import calculator.model.exeption.CalculataorExeption;
-import calculator.model.exeption.InvalidMathExpression;
 
 public class RationalParser implements Parser<Double> {
     @Override
-    public ParseEntity<Double> parse(final String mathExpr) throws CalculataorExeption {
+    public ParseEntity<Double> parse(final String mathExpr) throws ParseException{
         String expr = mathExpr.trim();
         int operIndex = -1;
         MathOperations oper = null;
@@ -21,7 +20,7 @@ public class RationalParser implements Parser<Double> {
             }
         }
         if (operIndex == -1){
-            throw new InvalidMathExpression("Неверное выражение");
+            throw new ParseException(String.format("Некорректное выражение -> '%s'", mathExpr), 0);
         }
 
         double leftOperand = Double.parseDouble(expr.substring(0, operIndex).trim());

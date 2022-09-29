@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class ConsoleVew implements View {
     public static final int LINE_SIZE = 60;
+    public static final String APP_TITLE = "Калькулятор";
     private Scanner in;
 
     public ConsoleVew() {
@@ -27,20 +28,17 @@ public class ConsoleVew implements View {
 
     @Override
     public CalcMode showMenu() {
-        printCalcHeader("Калькулятор");
-        System.out.printf("%d - [%s]\t%d - [%s]\n",
-                CalcMode.RATIONAL.ordinal(), CalcMode.RATIONAL, CalcMode.COMPLEX.ordinal(), CalcMode.COMPLEX);
+        printCalcHeader(APP_TITLE);
         while (true) {
-            System.out.print("Выберитие режим калькулятора: ");
+            String menuMessage = String.format("Выберитие режим калькулятора (%d - [%s]\t%d - [%s]): ",
+                    CalcMode.RATIONAL.ordinal(), CalcMode.RATIONAL.getModeName(), CalcMode.COMPLEX.ordinal(), CalcMode.COMPLEX.getModeName());
+            System.out.print(menuMessage);
             try {
                 in = new Scanner(System.in);
                 return CalcMode.values()[in.nextInt()];
-            }
-            catch (final ArrayIndexOutOfBoundsException e){
-                System.out.println("Неизвестный режим");
-            }
-            catch (final InputMismatchException e){
-                System.out.println("Режим работы должен быть числом");
+            } catch (final ArrayIndexOutOfBoundsException | InputMismatchException e) {
+                String message = String.format("Допустимые значения: %d, %d", CalcMode.RATIONAL.ordinal(), CalcMode.COMPLEX.ordinal());
+                System.out.println(message);
             }
         }
     }
@@ -50,10 +48,8 @@ public class ConsoleVew implements View {
         int spaceSize = (LINE_SIZE - caption.length()) / 2;
         printLineWith(lineSym, LINE_SIZE);
         System.out.println(" ".repeat(spaceSize) + caption + " ".repeat(spaceSize));
-        System.out.println("Калькулятор может работать с вещественными\n" +
-                "и комплексными числами.");
-        System.out.println("Поддержиываемые операции: +, - , *, /\n" +
-                "Выражение для вычисления записывается в виде: 'a (+[-,*,/]) b'.");
+        System.out.println("Работает с вещественными и комплексными числами.");
+        System.out.println("Поддержиываемые операции: +, - , *, /\n" + "Выражение для вычисления записывается в виде: 'a (+[-,*,/]) b'.");
         printLineWith(lineSym, LINE_SIZE);
     }
 

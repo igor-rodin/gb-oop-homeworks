@@ -2,7 +2,6 @@ package calculator;
 
 import calculator.model.Calculator;
 import calculator.model.complex.ComplexCalculator;
-import calculator.model.exeption.CalculataorExeption;
 import calculator.model.rational.RationalCalculator;
 import calculator.parser.ComplexParser;
 import calculator.parser.ParseEntity;
@@ -10,6 +9,8 @@ import calculator.parser.Parser;
 import calculator.parser.RationalParser;
 import calculator.view.ConsoleVew;
 import calculator.view.View;
+
+import java.text.ParseException;
 
 public class App {
 
@@ -21,16 +22,15 @@ public class App {
         CalcMode mode = view.showMenu();
         switch (mode) {
             case RATIONAL -> {
-                CalcLogger.LOGGER.info("Режим веещественных чисел");
-                System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n", "RATIONAL");
+                CalcLogger.LOGGER.info(String.format("Режим - %s", mode.getModeName()));
+                System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n", mode.getModeName());
                 calc(new RationalCalculator(), new RationalParser());
             }
             case COMPLEX -> {
-                CalcLogger.LOGGER.info("Режим комплексных чисел");
-                System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n\n", "COMPLEX");
-                System.out.println("(Комлексные числа должны быть в формате re + i img, re - вещественая часть,\n" +
-                        "img - мнимая. i записывается как i1");
-                System.out.println("И записаны внутри скобок, например, (1.5 + i2) * (i1) )dat");
+                CalcLogger.LOGGER.info(String.format("Режим - %s", mode.getModeName()));
+                System.out.printf("Режим - %s, для выхода нажмиту q[Q]\n\n", mode.getModeName());
+                System.out.println("Комлексные числа записываются в формате (re + iimg) (re - вещественая часть, " +
+                        "img - мнимая часть),\nнапример, '(1.5 + i2) * (i), (i2 + 4.25) / (2.4)'");
                 calc(new ComplexCalculator(), new ComplexParser());
             }
         }
@@ -53,9 +53,9 @@ public class App {
                 };
 
                 view.showResult(result.toString());
-                String logMessage = String.format("Выражение: %s - Значение: %s\n ", mathExpr, result);
+                String logMessage = String.format("Выражение: %s: Значение: %s\n ", mathExpr, result);
                 CalcLogger.LOGGER.info(logMessage);
-            } catch (CalculataorExeption e) {
+            } catch (ParseException e) {
                 System.out.println(e.getMessage());
             }
         }

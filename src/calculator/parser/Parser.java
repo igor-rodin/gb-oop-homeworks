@@ -1,7 +1,7 @@
 package calculator.parser;
 
-import calculator.model.exeption.CalculataorExeption;
+import java.text.ParseException;
 
 public interface Parser<T> {
-    ParseEntity<T> parse(final String mathExpr) throws CalculataorExeption;
+    ParseEntity<T> parse(final String mathExpr) throws ParseException;
 }

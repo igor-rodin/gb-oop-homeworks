@@ -2,8 +2,8 @@ package calculator.parser;
 
 import calculator.model.MathOperations;
 import calculator.model.complex.Complex;
-import calculator.model.exeption.CalculataorExeption;
-import calculator.model.exeption.InvalidMathExpression;
+
+import java.text.ParseException;
 
 public class ComplexParser implements Parser <Complex>{
 
@@ -11,7 +11,7 @@ public class ComplexParser implements Parser <Complex>{
     public static final String LEFT_BRACKET = "(";
 
     @Override
-    public ParseEntity<Complex> parse(final String mathExpr) throws CalculataorExeption {
+    public ParseEntity<Complex> parse(final String mathExpr) throws ParseException {
         String expr = mathExpr.trim();
         int rightBracketPos = mathExpr.indexOf(RIGHT_BRACKET);
         int lastLeftBracketPos = mathExpr.lastIndexOf(LEFT_BRACKET);
@@ -24,6 +24,6 @@ public class ComplexParser implements Parser <Complex>{
                 return new ParseEntity<>(Complex.parseComplex(leftExpr), Complex.parseComplex(rightExpr), value);
             }
         }
-        throw new InvalidMathExpression("Неверное выражение");
+        throw new ParseException(String.format("Некорректное выражение -> '%s'", mathExpr), 0);
     }
 }

@@ -20,7 +20,10 @@ public class Complex {
             return new Complex(Double.parseDouble(expr), 0);
         }
         String[] tokens = expr.split("i");
-        Double imgPart = Double.parseDouble(tokens[1].trim());
+        if (tokens.length == 0){
+            return new Complex(0., 1.);
+        }
+        Double imgPart = tokens.length == 1 ? 1 : Double.parseDouble(tokens[1].trim());
         String leftPart = tokens[0].trim();
         if (leftPart.isBlank()){
            return new Complex(0., imgPart);
@@ -62,18 +65,4 @@ public class Complex {
             return String.format("%f - i%f", re, Math.abs(img));
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Complex complex = (Complex) o;
-        return Double.compare(complex.re, re) == 0 && Double.compare(complex.img, img) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(re, img);
-    }
-
 }
