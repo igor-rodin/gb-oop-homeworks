@@ -1,6 +1,12 @@
-сент. 29, 2022 2:13:03 PM calculator.App run
+сент. 30, 2022 1:11:55 PM calculator.App run
 INFO: Калькулятор запущен
-сент. 29, 2022 2:13:06 PM calculator.App run
-INFO: Режим - Комплексный
-сент. 29, 2022 2:13:18 PM calculator.App calc
+сент. 30, 2022 1:12:11 PM calculator.App run
+INFO: Режим - Вещественный
+сент. 30, 2022 1:12:24 PM calculator.App calc
+INFO: Выражение: 3 - 8: Значение: -5.0
+ 
+сент. 30, 2022 1:12:35 PM calculator.App calc
+INFO: Выражение: 3.5 * 1.7: Значение: 5.95
+ 
+сент. 30, 2022 1:12:38 PM calculator.App calc
 INFO: Завершение работы

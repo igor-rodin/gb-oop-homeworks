@@ -10,6 +10,7 @@ public class CalcLogger {
     public static void initLogger(){
 
         try {
+            LOGGER.setUseParentHandlers(false);
             SimpleFormatter formatter = new SimpleFormatter();
             FileHandler fileHandler = new FileHandler(Config.logFile);
             fileHandler.setFormatter(formatter);
