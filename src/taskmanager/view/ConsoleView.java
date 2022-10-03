@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class ConsoleView implements View {
     public static final int SIZE_LINE = 80;
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final Map<PriorityColor, String> colorMap = Map.of(PriorityColor.BLACK, "\u001B[30m", PriorityColor.RED, "\u001B[31m",
+    public static final Map<PriorityColor, String> colorMap = Map.of(PriorityColor.BLACK, "\u001B[30m",
+            PriorityColor.RED, "\u001B[31m",
             PriorityColor.GREEN, "\u001B[32m", PriorityColor.ORANGE, "\u001b[31;1m");
     public static final String TASK_ROW_FORMAT = "%-4d%-10s%-10s%-12s%-12s%-12s%-18d";
     public static final String COLUMN_HEADER_FORMAT = "%-4s%-10s%-10s%-12s%-12s%-12s%-18s";
@@ -32,8 +33,8 @@ public class ConsoleView implements View {
         printLineWithSymbol("-", SIZE_LINE);
         for (int i = 0; i < taskBoardManager.getTaskBoard().items().size(); i++) {
             var item = taskBoardManager.getTask(i);
-            String row = String.format(TASK_ROW_FORMAT, i + 1, item.getAuthorFullName(), item.getTitle()
-                    , item.getCreateDate(), item.getPriorityLevel(), item.getStatus(), item.daysForDeadline());
+            String row = String.format(TASK_ROW_FORMAT, i + 1, item.getAuthorFullName(), item.getTitle(),
+                    item.getCreateDate(), item.getPriorityLevel(), item.getStatus(), item.daysForDeadline());
             PriorityColor displayColor = item.getPriorityColor();
             printColorLine(row, displayColor);
         }
@@ -52,10 +53,10 @@ public class ConsoleView implements View {
         printLineWithSymbol("=", SIZE_LINE);
         System.out.println("Available actions:");
         System.out.print(menu);
-        clearConsole();
         while (true) {
             try {
-                System.out.printf("%s (%d - %d): ", "Enter your choice", MainMenuCode.NEW_TASK.ordinal(), MainMenuCode.EXIT.ordinal());
+                System.out.printf("%s (%d - %d): ", "Enter your choice", MainMenuCode.NEW_TASK.ordinal(),
+                        MainMenuCode.EXIT.ordinal());
                 in = new Scanner(System.in);
                 return MainMenuCode.values()[in.nextInt()];
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -99,7 +100,8 @@ public class ConsoleView implements View {
     }
 
     private void printTaskBoardHeader() {
-        String header = String.format(COLUMN_HEADER_FORMAT, "№", "Author", "Title", "Add date", "Priority", "Status", "Days to deadline");
+        String header = String.format(COLUMN_HEADER_FORMAT, "№", "Author", "Title", "Add date", "Priority", "Status",
+                "Days to deadline");
         System.out.println(header);
     }
 
